@@ -4,19 +4,6 @@
   
   
   <entry>
-    <title>Hello World</title>
-    <link href="/2022/01/11/hello-world/"/>
-    <url>/2022/01/11/hello-world/</url>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>吴军《计算之魂》笔记与心得（待更新）</title>
     <link href="/2022/01/06/%E5%90%B4%E5%86%9B%E3%80%8A%E8%AE%A1%E7%AE%97%E4%B9%8B%E9%AD%82%E3%80%8B%E7%AC%94%E8%AE%B0%E4%B8%8E%E5%BF%83%E5%BE%97/"/>
     <url>/2022/01/06/%E5%90%B4%E5%86%9B%E3%80%8A%E8%AE%A1%E7%AE%97%E4%B9%8B%E9%AD%82%E3%80%8B%E7%AC%94%E8%AE%B0%E4%B8%8E%E5%BF%83%E5%BE%97/</url>
@@ -28,6 +15,25 @@
     <tags>
       
       <tag>专业书籍</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>GAMES101闫令琪《现代计算机图形学》笔记（超级大坑）</title>
+    <link href="/2021/07/11/Games101%E9%97%AB%E4%BB%A4%E7%90%AA%E3%80%8A%E7%8E%B0%E4%BB%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E3%80%8B%E7%AC%94%E8%AE%B0/"/>
+    <url>/2021/07/11/Games101%E9%97%AB%E4%BB%A4%E7%90%AA%E3%80%8A%E7%8E%B0%E4%BB%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E3%80%8B%E7%AC%94%E8%AE%B0/</url>
+    
+    <content type="html"><![CDATA[<p>课程链接：<a href="https://www.bilibili.com/video/BV1X7411F744">B站</a></p><p>[GAMES101:现代计算机图形学入门](<a href="http://games-cn.org/intro-graphics/">GAMES101:现代计算机图形学入门 – 计算机图形学与混合现实研讨会 (games-cn.org)</a>)</p><p><a href="%5B%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E6%85%95%E8%AF%BE%E4%BF%A1%E6%81%AF%E6%95%B4%E7%90%86_%E5%9B%BE%E5%BD%A2%E5%AD%A6%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96-CSDN%E5%8D%9A%E5%AE%A2%5D(https://blog.csdn.net/wpxu08/article/details/119958817)">计算机图形学在mooc上的课程</a></p><h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="1-什么是计算机图形学"><a href="#1-什么是计算机图形学" class="headerlink" title="1.什么是计算机图形学"></a>1.什么是计算机图形学</h3><p><strong>The use of computers to synthesize and manipulate visual information</strong></p><p><strong>利用计算机合成和处理视觉信息。</strong></p><p><del>当然，对于一个我这样的菜鸡前端而言，计算机图形学只是作为概论来让我进行了解，能够使用好three.js和其它的图形库才是我的目标。</del></p><p>本课程全面而系统地介绍了现代计算机图形学的四大组成部分：</p><p>（1）<strong>光栅化成像</strong>（2）<strong>几何表示</strong>（3）<strong>光的传播理论</strong>（4）<strong>动画与模拟</strong>。</p><p>自我理解类笔记精要</p><p>1.判断画面好不好可以直接看画面是不是足够亮，这与图形学的一项关键技术——全局光照有关。<br>2.特效可以算是最简单的图形学的应用。<br>3.将字体不断放大至一定尺度，字体仍然不怎么模糊。这涉及到两个概念，点阵和尺量。</p><p>Why Study Computer Graphics?</p><p>Fundamental Intellectual Challenges（基础知识的挑战）</p><p>Creates and interacts with realistic virtual world（创建并与现实的虚拟世界互动）</p><p>Requires understanding of all aspects of physical worlo（需要了解物质世界的各个方面）</p><p>New computing methods, displays, technologies（新的计算方法，显示，技术</p><p>Technical Challenges（技术挑战）</p><p>Math of (perspective) projections, curves, surfaces（透视投影、曲线、曲面的数学）</p><p>Physics of lighting and shading（光照和阴影的物理）</p><p>Representing / operating shapes in 3D（在3D中表示/操作形状）</p><p>Animation/ simulation（动画/模拟）</p><p>3D  graphies soofware    programming and hareware（3D软件编程和硬件）</p><p>GAMES的课不教</p><p>CV即一切需要猜测的内容</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>计算机图形学</tag>
       
     </tags>
     
