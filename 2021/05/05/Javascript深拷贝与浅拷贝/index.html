@@ -1,0 +1,487 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="概念 浅拷贝：只拷贝最外面一层的数据；更深层次的对象，只拷贝引用地址。  深拷贝：拷贝多层数据；每一层级别的数据都会拷贝。   总结： 浅拷贝引用的时候，是属于传地址，而非传值。 深拷贝会把对象里所有的数据重新复制到新的内存空间，是最彻底的拷贝。 浅拷贝的实现方式1.用 for in 实现浅拷贝（不推荐）12345678910111213141516171819const obj1 &#x3D; &amp;#123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript深拷贝与浅拷贝">
+<meta property="og:url" content="http://example.com/2021/05/05/Javascript%E6%B7%B1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B5%85%E6%8B%B7%E8%B4%9D/index.html">
+<meta property="og:site_name" content="Cornelius&#39;blog">
+<meta property="og:description" content="概念 浅拷贝：只拷贝最外面一层的数据；更深层次的对象，只拷贝引用地址。  深拷贝：拷贝多层数据；每一层级别的数据都会拷贝。   总结： 浅拷贝引用的时候，是属于传地址，而非传值。 深拷贝会把对象里所有的数据重新复制到新的内存空间，是最彻底的拷贝。 浅拷贝的实现方式1.用 for in 实现浅拷贝（不推荐）12345678910111213141516171819const obj1 &#x3D; &amp;#123">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-05T13:39:32.000Z">
+<meta property="article:modified_time" content="2022-01-13T13:49:11.800Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Javascript">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>Javascript深拷贝与浅拷贝 - Cornelius&#39;blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Cornelius&#39;blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Javascript深拷贝与浅拷贝">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-05-05 21:39" pubdate>
+        2021年5月5日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      34 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Javascript深拷贝与浅拷贝</h1>
+            
+            <div class="markdown-body">
+              <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
+<li><p>浅拷贝：只拷贝最外面一层的数据；更深层次的对象，只拷贝引用地址。</p>
+</li>
+<li><p>深拷贝：拷贝多层数据；每一层级别的数据都会拷贝。</p>
+</li>
+</ul>
+<p><strong>总结</strong>：</p>
+<p>浅拷贝引用的时候，是属于<strong>传地址</strong>，而非<strong>传值</strong>。</p>
+<p>深拷贝会把对象里<strong>所有的数据</strong>重新复制到新的内存空间，是最彻底的拷贝。</p>
+<h2 id="浅拷贝的实现方式"><a href="#浅拷贝的实现方式" class="headerlink" title="浅拷贝的实现方式"></a>浅拷贝的实现方式</h2><h4 id="1-用-for-in-实现浅拷贝（不推荐）"><a href="#1-用-for-in-实现浅拷贝（不推荐）" class="headerlink" title="1.用 for in 实现浅拷贝（不推荐）"></a>1.用 for in 实现浅拷贝（不推荐）</h4><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> obj1 = &#123;<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;奥特曼&#x27;</span>,<br>    <span class="hljs-attr">age</span>: <span class="hljs-number">28</span>,<br>    <span class="hljs-attr">info</span>: &#123;<br>        <span class="hljs-attr">desc</span>: <span class="hljs-string">&#x27;很厉害&#x27;</span>,<br>    &#125;,<br>&#125;;<br><br><span class="hljs-keyword">const</span> obj2 = &#123;&#125;;<br><span class="hljs-comment">//  用 for in 将 obj1 的值拷贝给 obj2</span><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> key <span class="hljs-keyword">in</span> obj1) &#123;<br>    obj2[key] = obj1[key];<br>&#125;<br><br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;obj2:&#x27;</span> + <span class="hljs-built_in">JSON</span>.stringify(obj2));<br><br>obj1.info.desc = <span class="hljs-string">&#x27;永不止步&#x27;</span>; <span class="hljs-comment">// 当修改 obj1 的第二层数据时，obj2的值也会被改变。所以  for in 是浅拷贝</span><br><br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;obj2:&#x27;</span> + <span class="hljs-built_in">JSON</span>.stringify(obj2));<br></code></pre></td></tr></table></figure>
+
+<p>上方代码中，用 for in 做拷贝时，只能做到浅拷贝。也就是说，在 obj2 中， name 和 age 这两个属性会单独存放在新的内存地址中，和 obj1 没有关系。但是，<code>obj2.info</code> 属性，跟 <code>obj1.info</code>属性，<strong>它俩指向的是同一个堆内存地址</strong>。所以，当我修改 <code>obj1.info</code> 里的值之后，<code>obj2.info</code>的值也会被修改。</p>
+<p>打印结果如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js">obj2:&#123;<span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;奥特曼&quot;</span>,<span class="hljs-string">&quot;age&quot;</span>:<span class="hljs-number">28</span>,<span class="hljs-string">&quot;info&quot;</span>:&#123;<span class="hljs-string">&quot;desc&quot;</span>:<span class="hljs-string">&quot;很厉害&quot;</span>&#125;&#125;<br><br><span class="hljs-attr">obj2</span>:&#123;<span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;奥特曼&quot;</span>,<span class="hljs-string">&quot;age&quot;</span>:<span class="hljs-number">28</span>,<span class="hljs-string">&quot;info&quot;</span>:&#123;<span class="hljs-string">&quot;desc&quot;</span>:<span class="hljs-string">&quot;永不止步&quot;</span>&#125;&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="用-Object-assgin-实现浅拷贝（推荐的方式）"><a href="#用-Object-assgin-实现浅拷贝（推荐的方式）" class="headerlink" title="用 Object.assgin() 实现浅拷贝（推荐的方式）"></a>用 Object.assgin() 实现浅拷贝（推荐的方式）</h3><p>上面的 for in 方法做浅拷贝过于繁琐。ES6 给我们提供了新的语法糖，通过<strong>Object.assgin()</strong> 可以实现<strong>浅拷贝</strong>。</p>
+<p><strong>语法</strong>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 语法1</span><br>obj2 = <span class="hljs-built_in">Object</span>.assgin(obj2, obj1);<br><br><span class="hljs-comment">// 语法2</span><br><span class="hljs-built_in">Object</span>.assign(目标对象, 源对象<span class="hljs-number">1</span>, 源对象<span class="hljs-number">2.</span>..);<br></code></pre></td></tr></table></figure>
+
+<p><strong>解释</strong>：将<code>obj1</code> 拷贝给 <code>obj2</code>。执行完毕后，obj2 的值会被更新。</p>
+<p><strong>作用</strong>：将 obj1 的值追加到 obj2 中。如果对象里的属性名相同，会被覆盖。</p>
+<p>从语法2中可以看出，Object.assign() 可以将多个“源对象”拷贝到“目标对象”中。</p>
+<p><strong>例 1</strong>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> obj1 = &#123;<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;奥特曼&#x27;</span>,<br>    <span class="hljs-attr">age</span>: <span class="hljs-number">18</span>,<br>    <span class="hljs-attr">info</span>: &#123;<br>        <span class="hljs-attr">desc</span>: <span class="hljs-string">&#x27;hello&#x27;</span>,<br>    &#125;,<br>&#125;;<br><br><span class="hljs-comment">// 浅拷贝：把 obj1 拷贝给 obj2。如果 obj1 只有一层数据，那么，obj1 和 obj2 则互不影响</span><br><span class="hljs-keyword">const</span> obj2 = <span class="hljs-built_in">Object</span>.assign(&#123;&#125;, obj1);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;obj2:&#x27;</span> + <span class="hljs-built_in">JSON</span>.stringify(obj2));<br><br>obj1.info.desc = <span class="hljs-string">&#x27;永不止步&#x27;</span>; <span class="hljs-comment">// 由于 Object.assign() 只是浅拷贝，所以当修改 obj1 的第二层数据时，obj2 对应的值也会被改变。</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;obj2:&#x27;</span> + <span class="hljs-built_in">JSON</span>.stringify(obj2));<br></code></pre></td></tr></table></figure>
+
+<p>代码解释：由于 Object.assign() 只是浅拷贝，所以在当前这个案例中， obj2 中的 name 属性和 age 属性是单独存放在新的堆内存地址中的，和 obj1 没有关系；但是，<code>obj2.info</code> 属性，跟 <code>obj1.info</code>属性，<strong>它俩指向的是同一个堆内存地址</strong>。所以，当我修改 <code>obj1.info</code> 里的值之后，<code>obj2.info</code>的值也会被修改。</p>
+<p>打印结果：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">obj2</span>:&#123;<span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;奥特曼&quot;</span>,<span class="hljs-string">&quot;age&quot;</span>:<span class="hljs-number">28</span>,<span class="hljs-string">&quot;info&quot;</span>:&#123;<span class="hljs-string">&quot;desc&quot;</span>:<span class="hljs-string">&quot;hello&quot;</span>&#125;&#125;<br><br><span class="hljs-attribute">obj2</span>:&#123;<span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;奥特曼&quot;</span>,<span class="hljs-string">&quot;age&quot;</span>:<span class="hljs-number">28</span>,<span class="hljs-string">&quot;info&quot;</span>:&#123;<span class="hljs-string">&quot;desc&quot;</span>:<span class="hljs-string">&quot;永不止步&quot;</span>&#125;&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>例 2</strong>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> myObj = &#123;<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;奥特曼&#x27;</span>,<br>    <span class="hljs-attr">age</span>: <span class="hljs-number">28</span>,<br>&#125;;<br><br><span class="hljs-comment">// 【写法1】浅拷贝：把 myObj 拷贝给 obj1</span><br><span class="hljs-keyword">const</span> obj1 = &#123;&#125;;<br><span class="hljs-built_in">Object</span>.assign(obj1, myObj);<br><br><span class="hljs-comment">// 【写法2】浅拷贝：把 myObj 拷贝给 obj2</span><br><span class="hljs-keyword">const</span> obj2 = <span class="hljs-built_in">Object</span>.assign(&#123;&#125;, myObj);<br><br><span class="hljs-comment">// 【写法3】浅拷贝：把 myObj 拷贝给 obj31。注意，这里的 obj31 和 obj32 其实是等价的，他们指向了同一个内存地址</span><br><span class="hljs-keyword">const</span> obj31 = &#123;&#125;;<br><span class="hljs-keyword">const</span> obj32 = <span class="hljs-built_in">Object</span>.assign(obj31, myObj);<br></code></pre></td></tr></table></figure>
+
+<p>上面这三种写法，是等价的。所以，当我们需要将对象 A 复制（拷贝）给对象 B，不要直接使用 <code>B = A</code>，而是要使用 Object.assign(B, A)。</p>
+<p><strong>例 3</strong>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> obj1 = &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;奥特曼&#x27;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">26</span> &#125;;<br><span class="hljs-keyword">let</span> obj2 = &#123; <span class="hljs-attr">city</span>: <span class="hljs-string">&#x27;shenzhen&#x27;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">28</span> &#125;;<br><span class="hljs-keyword">let</span> obj3 = &#123;&#125;;<br><br><span class="hljs-built_in">Object</span>.assign(obj3, obj1, obj2); <span class="hljs-comment">// 将 obj1、obj2的内容赋值给 obj3</span><br><span class="hljs-built_in">console</span>.log(obj3); <span class="hljs-comment">// &#123;name: &quot;奥特曼&quot;, age: 28, city: &quot;shenzhen&quot;&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>上面的代码，可以理解成：将多个对象（obj1和obj2）合并成一个对象 obj3。</p>
+<p><strong>例4</strong>：【重要】</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> obj1 = &#123;<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;奥特曼&#x27;</span>,<br>    <span class="hljs-attr">age</span>: <span class="hljs-number">28</span>,<br>    <span class="hljs-attr">desc</span>: <span class="hljs-string">&#x27;hello world&#x27;</span>,<br>&#125;;<br><br><span class="hljs-keyword">const</span> obj2 = &#123;<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;盖亚&#x27;</span>,<br>    <span class="hljs-attr">sex</span>: <span class="hljs-string">&#x27;男&#x27;</span>,<br>&#125;;<br><br><span class="hljs-comment">// 浅拷贝：把 obj1 赋值给 obj2。这一行，是关键代码。这行代码的返回值也是 obj2</span><br><span class="hljs-built_in">Object</span>.assign(obj2, obj1);<br><br><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(obj2));<br></code></pre></td></tr></table></figure>
+
+<p>打印结果：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<span class="hljs-attr">&quot;name&quot;</span>:<span class="hljs-string">&quot;奥特曼&quot;</span>,<span class="hljs-attr">&quot;sex&quot;</span>:<span class="hljs-string">&quot;男&quot;</span>,<span class="hljs-attr">&quot;age&quot;</span>:<span class="hljs-number">28</span>,<span class="hljs-attr">&quot;desc&quot;</span>:<span class="hljs-string">&quot;hello world&quot;</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>注意，<strong>例 4 在实际开发中，会经常遇到，一定要掌握</strong>。它的作用是：将 obj1 的值追加到 obj2 中。如果两个对象里的属性名相同，则 obj12 中的值会被 obj2 中的值覆盖。</p>
+<h2 id="深拷贝的实现方式"><a href="#深拷贝的实现方式" class="headerlink" title="深拷贝的实现方式"></a>深拷贝的实现方式</h2><p>深拷贝其实就是将浅拷贝进行递归。</p>
+<h3 id="用-for-in-递归实现深拷贝"><a href="#用-for-in-递归实现深拷贝" class="headerlink" title="用 for in 递归实现深拷贝"></a>用 for in 递归实现深拷贝</h3><p>代码实现：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> obj1 = &#123;<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;奥特曼&#x27;</span>,<br>    <span class="hljs-attr">age</span>: <span class="hljs-number">28</span>,<br>    <span class="hljs-attr">info</span>: &#123;<br>        <span class="hljs-attr">desc</span>: <span class="hljs-string">&#x27;hello&#x27;</span>,<br>    &#125;,<br>    <span class="hljs-attr">color</span>: [<span class="hljs-string">&#x27;red&#x27;</span>, <span class="hljs-string">&#x27;blue&#x27;</span>, <span class="hljs-string">&#x27;green&#x27;</span>],<br>&#125;;<br><span class="hljs-keyword">let</span> obj2 = &#123;&#125;;<br><br>deepCopy(obj2, obj1);<br><span class="hljs-built_in">console</span>.log(obj2);<br>obj1.info.desc = <span class="hljs-string">&#x27;github&#x27;</span>;<br><span class="hljs-built_in">console</span>.log(obj2);<br><br><span class="hljs-comment">// 方法：深拷贝</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">deepCopy</span>(<span class="hljs-params">newObj, oldObj</span>) </span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> key <span class="hljs-keyword">in</span> oldObj) &#123;<br>        <span class="hljs-comment">// 获取属性值 oldObj[key]</span><br>        <span class="hljs-keyword">let</span> item = oldObj[key];<br>        <span class="hljs-comment">// 判断这个值是否是数组</span><br>        <span class="hljs-keyword">if</span> (item <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span>) &#123;<br>            newObj[key] = [];<br>            deepCopy(newObj[key], item);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (item <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>) &#123;<br>            <span class="hljs-comment">// 判断这个值是否是对象</span><br>            newObj[key] = &#123;&#125;;<br>            deepCopy(newObj[key], item);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-comment">// 简单数据类型，直接赋值</span><br>            newObj[key] = item;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Javascript/">Javascript</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/07/11/Games101%E9%97%AB%E4%BB%A4%E7%90%AA%E3%80%8A%E7%8E%B0%E4%BB%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E3%80%8B%E7%AC%94%E8%AE%B0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GAMES101闫令琪《现代计算机图形学》笔记（超级大坑）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/05/01/%E7%90%86%E8%A7%A3Javascript%E4%B8%AD%E7%9A%84this%E6%8C%87%E5%90%91/">
+                        <span class="hidden-mobile">理解Javascript中的this指向</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

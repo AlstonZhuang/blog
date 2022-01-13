@@ -24,7 +24,7 @@
 <meta property="og:description" content="课程链接：B站 GAMES101:现代计算机图形学入门 计算机图形学在mooc上的课程 1.什么是计算机图形学The use of computers to synthesize and manipulate visual information 利用计算机合成和处理视觉信息。 当然，对于一个我这样的菜鸡前端而言，计算机图形学只是作为概论来让我进行了解，能够使用好three.js和其它的图形库才是">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-07-11T08:20:54.000Z">
-<meta property="article:modified_time" content="2022-01-13T09:10:11.650Z">
+<meta property="article:modified_time" content="2022-01-13T13:29:51.461Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="计算机图形学">
 <meta name="twitter:card" content="summary_large_image">
@@ -197,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      874 字
+      1.6k 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8 分钟
+      14 分钟
     </span>
   
 
@@ -245,22 +245,68 @@
 <p><strong>利用计算机合成和处理视觉信息。</strong></p>
 <p><del>当然，对于一个我这样的菜鸡前端而言，计算机图形学只是作为概论来让我进行了解，能够使用好three.js和其它的图形库才是我的目标。</del></p>
 <p>本课程全面而系统地介绍了现代计算机图形学的四大组成部分：</p>
-<p>（1）<strong>光栅化成像</strong>（2）<strong>几何表示</strong>（3）<strong>光的传播理论</strong>（4）<strong>动画与模拟</strong>。</p>
-<p>自我理解类笔记精要</p>
-<p>1.判断画面好不好可以直接看画面是不是足够亮，这与图形学的一项关键技术——全局光照有关。<br>2.特效可以算是最简单的图形学的应用。<br>3.将字体不断放大至一定尺度，字体仍然不怎么模糊。这涉及到两个概念，点阵和尺量。</p>
-<p>Why Study Computer Graphics?</p>
-<p>Fundamental Intellectual Challenges（基础知识的挑战）</p>
-<p>Creates and interacts with realistic virtual world（创建并与现实的虚拟世界互动）</p>
-<p>Requires understanding of all aspects of physical worlo（需要了解物质世界的各个方面）</p>
-<p>New computing methods, displays, technologies（新的计算方法，显示，技术</p>
-<p>Technical Challenges（技术挑战）</p>
-<p>Math of (perspective) projections, curves, surfaces（透视投影、曲线、曲面的数学）</p>
-<p>Physics of lighting and shading（光照和阴影的物理）</p>
-<p>Representing / operating shapes in 3D（在3D中表示/操作形状）</p>
-<p>Animation/ simulation（动画/模拟）</p>
-<p>3D  graphies soofware    programming and hareware（3D软件编程和硬件）</p>
+<p>（1）<strong>光栅化成像</strong></p>
+<p>（2）<strong>几何表示</strong></p>
+<p>（3）<strong>光的传播理论</strong></p>
+<p>（4）<strong>动画与模拟</strong>。</p>
+<h3 id="2-Why-Study-Computer-Graphics"><a href="#2-Why-Study-Computer-Graphics" class="headerlink" title="2.Why Study Computer Graphics?"></a>2.Why Study Computer Graphics?</h3><p><strong>Fundamental Intellectual Challenges</strong>（基础知识的挑战）</p>
+<p><strong>Creates and interacts with realistic virtual world</strong>（创建并与现实的虚拟世界互动）</p>
+<p><strong>Requires understanding of all aspects of physical worlo</strong>（需要了解物质世界的各个方面）</p>
+<p><strong>New computing methods, displays, technologies</strong>（新的计算方法，显示，技术)</p>
+<p><strong>Technical Challenges</strong>（技术挑战）</p>
+<p><strong>Math of (perspective) projections, curves, surfaces</strong>（透视投影、曲线、曲面的数学）</p>
+<p><strong>Physics of lighting and shading</strong>（光照和阴影的物理）</p>
+<p><strong>Representing / operating shapes in 3D</strong>（在3D中表示/操作形状）</p>
+<p><strong>Animation/ simulation</strong>（动画/模拟）</p>
+<p><strong>3D graphies soofware programming and hareware</strong>（3D软件编程和硬件）</p>
 <p>GAMES的课不教</p>
 <p>CV即一切需要猜测的内容</p>
+<h3 id="3-Transformation-基础变换、三维到二维变换（模型、视图、投影）"><a href="#3-Transformation-基础变换、三维到二维变换（模型、视图、投影）" class="headerlink" title="3.Transformation 基础变换、三维到二维变换（模型、视图、投影）"></a>3.Transformation 基础变换、三维到二维变换（模型、视图、投影）</h3><ul>
+<li>基础变换（仿射变换）：旋转、缩放、切变、平移<ul>
+<li>先后顺序很重要，需要仔细想</li>
+<li>仿射变换=线性变换+平移</li>
+<li>线性变换=旋转+缩放+切变</li>
+</ul>
+</li>
+<li>齐次坐标系：n维的点/向量，用[n+1 x 1]的列向量表示<ul>
+<li>变换用[n+1 x n+1]的矩阵左乘来表示</li>
+<li>多个变换可以组合起来变成一个矩阵→加速计算</li>
+</ul>
+</li>
+</ul>
+<p>旋转的表示：</p>
+<ul>
+<li>欧拉角：roll, pitch, yaw</li>
+<li>四元数：</li>
+</ul>
+<p>MVP：</p>
+<ul>
+<li><p>Model transformation (placing objects)</p>
+<p>想象一下：世界坐标系下有很多Object，用一个变化矩阵把它们的顶点坐标从Local坐标系（相对）转换到世界Global坐标系（绝对）。这就是placing objects</p>
+</li>
+<li><p>View transformation (placing camera)</p>
+<p>想象一下：我们看到的画面由摄像机捕捉，摄像机参数决定了我们在屏幕上看到的东西，这一步可以将世界坐标系转换到摄像机坐标系。</p>
+</li>
+<li><p>Projection transformation</p>
+<p>摄像机坐标系，视锥体，再规整一下</p>
+</li>
+</ul>
+<p>Viewing (观测) transformation</p>
+<ul>
+<li>View (视图) / Camera transformation</li>
+<li>Projection (投影) transformation<ul>
+<li>Orthographic projection (cuboid to “canonical” cube [-1, 1]^3)</li>
+<li>Perspective projection (frustum to “canonical” cube)<ul>
+<li>First “squish” the frustum into a cuboid</li>
+<li>Then Do orthographic projection</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>自我理解类笔记精要</p>
+<p>1.判断画面好不好可以直接看画面是不是足够亮，这与图形学的一项关键技术——全局光照有关。<br>2.特效可以算是最简单的图形学的应用。<br>3.将字体不断放大至一定尺度，字体仍然不怎么模糊。这涉及到两个概念，点阵和尺量。</p>
+<p>注：数学是我强项，但是只能听懂个皮毛。英语六级过了其实屁都算不上，拿来学习太勉强了。这个时间的投资回收比太低了，这个系列暂时先放一放。</p>
 
             </div>
             <hr>
@@ -298,8 +344,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/05/01/%E7%90%86%E8%A7%A3Javascript%E4%B8%AD%E7%9A%84this%E6%8C%87%E5%90%91/">
-                        <span class="hidden-mobile">理解Javascript中的this指向</span>
+                      <a href="/2021/05/05/Javascript%E6%B7%B1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B5%85%E6%8B%B7%E8%B4%9D/">
+                        <span class="hidden-mobile">Javascript深拷贝与浅拷贝</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
