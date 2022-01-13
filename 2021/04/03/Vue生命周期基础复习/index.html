@@ -16,21 +16,22 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1.Flexbox布局核心思想Flex布局的核心思想是只需声明布局应该具有的行为而不需要给出具体的实现方式.其优势在于父元素在子元素的宽高或其它属性不明确时仍然可以为其分配好合理的排列方式,浏览器负责完成实际布局. 当布局涉及到不定宽度，分布对⻬的场景时，就要优先考虑弹性盒布局。从使用频率与实际效果来看,felx布局更加适合于移动端,pad端等小规模的窗口平台. 2.Flex结构1.flex元素结">
+    <meta name="description" content="1.Vue的生命周期 1.1.什么是vue的生命周期？每个组件都是各自独立的，每个组件都有自己的生命周期。从一个组件创建实例 -&gt; 数据初始化 -&gt; 挂载 -&gt; 更新 -&gt; 销毁，就是一个组件的生命周期。 1.2.每个生命周期函数的类别与具体触发时间 创建期间的生命周期函数：  beforeCreate：实例刚在内存中被创建出来，此时，还没有初始化好 data 和 meth">
 <meta property="og:type" content="article">
-<meta property="og:title" content="轻松理解Flexbox布局精要">
-<meta property="og:url" content="http://example.com/2021/03/01/%E8%BD%BB%E6%9D%BE%E7%90%86%E8%A7%A3Flexbox%E5%B8%83%E5%B1%80%E7%B2%BE%E8%A6%81/index.html">
+<meta property="og:title" content="Vue基础复习(一)">
+<meta property="og:url" content="http://example.com/2021/04/03/Vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9F%BA%E7%A1%80%E5%A4%8D%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1.Flexbox布局核心思想Flex布局的核心思想是只需声明布局应该具有的行为而不需要给出具体的实现方式.其优势在于父元素在子元素的宽高或其它属性不明确时仍然可以为其分配好合理的排列方式,浏览器负责完成实际布局. 当布局涉及到不定宽度，分布对⻬的场景时，就要优先考虑弹性盒布局。从使用频率与实际效果来看,felx布局更加适合于移动端,pad端等小规模的窗口平台. 2.Flex结构1.flex元素结">
+<meta property="og:description" content="1.Vue的生命周期 1.1.什么是vue的生命周期？每个组件都是各自独立的，每个组件都有自己的生命周期。从一个组件创建实例 -&gt; 数据初始化 -&gt; 挂载 -&gt; 更新 -&gt; 销毁，就是一个组件的生命周期。 1.2.每个生命周期函数的类别与具体触发时间 创建期间的生命周期函数：  beforeCreate：实例刚在内存中被创建出来，此时，还没有初始化好 data 和 meth">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-03-01T12:00:42.000Z">
-<meta property="article:modified_time" content="2022-01-13T05:30:23.541Z">
+<meta property="og:image" content="http://doc.bufanui.com/uploads/vue/images/m_c16c4ab27124dfa20ecf0504af9c8211_r.jpg">
+<meta property="article:published_time" content="2021-04-03T07:31:59.000Z">
+<meta property="article:modified_time" content="2022-01-13T08:10:10.364Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="CSS">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://doc.bufanui.com/uploads/vue/images/m_c16c4ab27124dfa20ecf0504af9c8211_r.jpg">
   
   
-  <title>轻松理解Flexbox布局精要 - Hexo</title>
+  <title>Vue基础复习(一) - Hexo</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -176,7 +177,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="轻松理解Flexbox布局精要">
+            <span class="h2" id="subtitle" title="Vue基础复习(一)">
               
             </span>
 
@@ -186,8 +187,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-03-01 20:00" pubdate>
-        2021年3月1日 晚上
+      <time datetime="2021-04-03 15:31" pubdate>
+        2021年4月3日 下午
       </time>
     </span>
   
@@ -197,7 +198,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      318 字
+      932 字
     </span>
   
 
@@ -206,7 +207,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3 分钟
+      8 分钟
     </span>
   
 
@@ -235,26 +236,46 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">轻松理解Flexbox布局精要</h1>
+            <h1 style="display: none">Vue基础复习(一)</h1>
             
             <div class="markdown-body">
-              <h3 id="1-Flexbox布局核心思想"><a href="#1-Flexbox布局核心思想" class="headerlink" title="1.Flexbox布局核心思想"></a>1.Flexbox布局核心思想</h3><p>Flex布局的核心思想是<strong>只需声明布局应该具有的行为而不需要给出具体的实现方式.其优势在于父元素在子元素的宽高或其它属性不明确时仍然可以为其分配好合理的排列方式</strong>,浏览器负责完成实际布局.</p>
-<p>当布局涉及到不定宽度，分布对⻬的场景时，就要优先考虑弹性盒布局。从使用频率与实际效果来看,felx布局更加适合于移动端,pad端等小规模的窗口平台.</p>
-<h2 id="2-Flex结构"><a href="#2-Flex结构" class="headerlink" title="2.Flex结构"></a>2.Flex结构</h2><h3 id="1-flex元素结构"><a href="#1-flex元素结构" class="headerlink" title="1.flex元素结构"></a>1.flex元素结构</h3><p>采用 Flex 布局的元素，称为 Flex 容器，简称”<strong>容器</strong>“。它的子元素就是容器成员，称为 Flex 项目，简称”<strong>项目</strong>“</p>
-<h3 id="2-flex物理结构"><a href="#2-flex物理结构" class="headerlink" title="2.flex物理结构"></a>2.flex物理结构</h3><p>容器默认存在两个轴：<strong>水平轴</strong>（main axis）和<strong>垂直轴</strong>（cross axis），项目默认沿主轴排列（水平轴）：</p>
+              <h3 id="1-Vue的生命周期"><a href="#1-Vue的生命周期" class="headerlink" title="1.Vue的生命周期"></a>1.Vue的生命周期</h3><p><img src="http://doc.bufanui.com/uploads/vue/images/m_c16c4ab27124dfa20ecf0504af9c8211_r.jpg" srcset="/img/loading.gif" lazyload></p>
+<h4 id="1-1-什么是vue的生命周期？"><a href="#1-1-什么是vue的生命周期？" class="headerlink" title="1.1.什么是vue的生命周期？"></a>1.1.什么是vue的生命周期？</h4><p>每个组件都是各自独立的，每个组件都有自己的生命周期。从一个组件创建实例 -&gt; 数据初始化 -&gt; 挂载 -&gt; 更新 -&gt; 销毁，就是一个组件的生命周期。</p>
+<h4 id="1-2-每个生命周期函数的类别与具体触发时间"><a href="#1-2-每个生命周期函数的类别与具体触发时间" class="headerlink" title="1.2.每个生命周期函数的类别与具体触发时间"></a>1.2.每个生命周期函数的类别与具体触发时间</h4><ul>
+<li><p>创建期间的生命周期函数：</p>
+<ul>
+<li><strong>beforeCreate</strong>：实例刚在内存中被创建出来，此时，还没有初始化好 data 和 methods 属性</li>
+<li><strong>created</strong>：实例已经在内存中创建OK，此时 data 和 methods 已经创建OK，此时还没有开始 编译模板(模板 比如<code>&#123;&#123;&#125;&#125;</code>)</li>
+<li><strong>beforeMount</strong>：此时已经完成了模板的编译，但是还没有挂载到页面中</li>
+<li><strong>mounted</strong>：此时，已经将编译好的模板，挂载到了页面指定的容器中显示</li>
+</ul>
+</li>
+<li><p>运行期间的生命周期函数：</p>
+<ul>
+<li><strong>beforeUpdate</strong>：状态更新之前执行此函数， 此时 data 中的状态值是最新的，但是界面上显示的 数据还是旧的，因为此时还没有开始重新渲染DOM节点</li>
+<li><strong>updated</strong>：实例更新完毕之后调用此函数，此时 data 中的状态值 和 界面上显示的数据，都已经完成了更新，界面已经被重新渲染好了！</li>
+</ul>
+</li>
+<li><p>销毁期间的生命周期函数：</p>
+<ul>
+<li><p><strong>beforeDestroy</strong>：实例销毁之前调用。在这一步，实例仍然完全可用。</p>
+</li>
+<li><p><strong>destroyed</strong>：Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-为什么data必须要写成一个函数而不是对象？"><a href="#2-为什么data必须要写成一个函数而不是对象？" class="headerlink" title="2.为什么data必须要写成一个函数而不是对象？"></a>2.为什么data必须要写成一个函数而不是对象？</h3><p>组件具有复用性，可以在同一个页面使用多个同一个组件。如果data是个对象的话那么同一类组件中的数据就会公用，导致数据混乱失控，而data是函数的话可以给每个组件实例产生各自的的数据，这些数据彼此独立。</p>
+<h3 id="3-computed-和-watch-的区别"><a href="#3-computed-和-watch-的区别" class="headerlink" title="3.computed 和 watch 的区别"></a>3.computed 和 watch 的区别</h3><p>computed是计算属性，依赖其他属性计算值，并且computed会基于它的响应式依赖来进行缓存，只有响应式依赖发生改变时，才会重新求值；否则就直接返回上一次的计算结果 。</p>
+<p>watch监听到值的变化就会执行回调，在回调中可以进行一些逻辑操作。</p>
+<p>当需要依赖别的属性来动态获得值时，使用computed。</p>
+<p>对于监听到值的变化需要做一些复杂的逻辑处理时，使用watch。</p>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/CSS/">CSS</a>
-                    
-                  </div>
                 
               </div>
               
@@ -269,15 +290,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/04/03/Vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9F%BA%E7%A1%80%E5%A4%8D%E4%B9%A0/">
+                      <a href="/2021/05/01/%E7%90%86%E8%A7%A3Javascript%E4%B8%AD%E7%9A%84this%E6%8C%87%E5%90%91/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Vue基础复习(一)</span>
+                        <span class="hidden-mobile">理解Javascript中的this指向</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2021/03/01/%E8%BD%BB%E6%9D%BE%E7%90%86%E8%A7%A3Flexbox%E5%B8%83%E5%B1%80%E7%B2%BE%E8%A6%81/">
+                        <span class="hidden-mobile">轻松理解Flexbox布局精要</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

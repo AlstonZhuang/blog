@@ -55,6 +55,19 @@
   
   
   <entry>
+    <title>Vue基础复习(一)</title>
+    <link href="/2021/04/03/Vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9F%BA%E7%A1%80%E5%A4%8D%E4%B9%A0/"/>
+    <url>/2021/04/03/Vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9F%BA%E7%A1%80%E5%A4%8D%E4%B9%A0/</url>
+    
+    <content type="html"><![CDATA[<h3 id="1-Vue的生命周期"><a href="#1-Vue的生命周期" class="headerlink" title="1.Vue的生命周期"></a>1.Vue的生命周期</h3><p><img src="http://doc.bufanui.com/uploads/vue/images/m_c16c4ab27124dfa20ecf0504af9c8211_r.jpg"></p><h4 id="1-1-什么是vue的生命周期？"><a href="#1-1-什么是vue的生命周期？" class="headerlink" title="1.1.什么是vue的生命周期？"></a>1.1.什么是vue的生命周期？</h4><p>每个组件都是各自独立的，每个组件都有自己的生命周期。从一个组件创建实例 -&gt; 数据初始化 -&gt; 挂载 -&gt; 更新 -&gt; 销毁，就是一个组件的生命周期。</p><h4 id="1-2-每个生命周期函数的类别与具体触发时间"><a href="#1-2-每个生命周期函数的类别与具体触发时间" class="headerlink" title="1.2.每个生命周期函数的类别与具体触发时间"></a>1.2.每个生命周期函数的类别与具体触发时间</h4><ul><li><p>创建期间的生命周期函数：</p><ul><li><strong>beforeCreate</strong>：实例刚在内存中被创建出来，此时，还没有初始化好 data 和 methods 属性</li><li><strong>created</strong>：实例已经在内存中创建OK，此时 data 和 methods 已经创建OK，此时还没有开始 编译模板(模板 比如<code>&#123;&#123;&#125;&#125;</code>)</li><li><strong>beforeMount</strong>：此时已经完成了模板的编译，但是还没有挂载到页面中</li><li><strong>mounted</strong>：此时，已经将编译好的模板，挂载到了页面指定的容器中显示</li></ul></li><li><p>运行期间的生命周期函数：</p><ul><li><strong>beforeUpdate</strong>：状态更新之前执行此函数， 此时 data 中的状态值是最新的，但是界面上显示的 数据还是旧的，因为此时还没有开始重新渲染DOM节点</li><li><strong>updated</strong>：实例更新完毕之后调用此函数，此时 data 中的状态值 和 界面上显示的数据，都已经完成了更新，界面已经被重新渲染好了！</li></ul></li><li><p>销毁期间的生命周期函数：</p><ul><li><p><strong>beforeDestroy</strong>：实例销毁之前调用。在这一步，实例仍然完全可用。</p></li><li><p><strong>destroyed</strong>：Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。</p></li></ul></li></ul><h3 id="2-为什么data必须要写成一个函数而不是对象？"><a href="#2-为什么data必须要写成一个函数而不是对象？" class="headerlink" title="2.为什么data必须要写成一个函数而不是对象？"></a>2.为什么data必须要写成一个函数而不是对象？</h3><p>组件具有复用性，可以在同一个页面使用多个同一个组件。如果data是个对象的话那么同一类组件中的数据就会公用，导致数据混乱失控，而data是函数的话可以给每个组件实例产生各自的的数据，这些数据彼此独立。</p><h3 id="3-computed-和-watch-的区别"><a href="#3-computed-和-watch-的区别" class="headerlink" title="3.computed 和 watch 的区别"></a>3.computed 和 watch 的区别</h3><p>computed是计算属性，依赖其他属性计算值，并且computed会基于它的响应式依赖来进行缓存，只有响应式依赖发生改变时，才会重新求值；否则就直接返回上一次的计算结果 。</p><p>watch监听到值的变化就会执行回调，在回调中可以进行一些逻辑操作。</p><p>当需要依赖别的属性来动态获得值时，使用computed。</p><p>对于监听到值的变化需要做一些复杂的逻辑处理时，使用watch。</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>轻松理解Flexbox布局精要</title>
     <link href="/2021/03/01/%E8%BD%BB%E6%9D%BE%E7%90%86%E8%A7%A3Flexbox%E5%B8%83%E5%B1%80%E7%B2%BE%E8%A6%81/"/>
     <url>/2021/03/01/%E8%BD%BB%E6%9D%BE%E7%90%86%E8%A7%A3Flexbox%E5%B8%83%E5%B1%80%E7%B2%BE%E8%A6%81/</url>
